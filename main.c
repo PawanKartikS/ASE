@@ -121,16 +121,20 @@ int main(int argc, char **argv) {
 			exec = 0;
 		}
 
-		if (exec && glob->debug_mode) {
-			printf("Evaluating: %s %s %s\n", glob->tokens[0], glob->tokens[1],
-				glob->tokens[2]);
+		if(exec){
+			if (glob->debug_mode) {
+				printf("Evaluating: %s %s %s\n", glob->tokens[0], glob->tokens[1],
+					glob->tokens[2]);
 
-			char ch = getchar();
-			while(ch != 'c'){
-				ch = getchar();
+				char ch = getchar();
+				while(ch != 'c'){
+					ch = getchar();
+				}
+
+				display(glob, args_);
 			}
-
-			display(glob, args_);
+		} else {
+			break;
 		}
 	}
 
