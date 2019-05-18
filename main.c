@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
 	parse_args(glob, argc, argv, &args_);
 
 	if(glob->debug_mode) {
-		printf("Debug Mode.\nPress 'c' to continue or to proceed to next step.\n\n");
+		printf("Debug Mode. Press 'c' to continue.\n\n");
 	}
 	
 	while (fgets(line, sizeof(line), fd) != NULL) {
