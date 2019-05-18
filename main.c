@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
 	parse_args(glob, argc, argv, &args_);
 
 	if(glob->debug_mode) {
-		printf("Debug Mode. Press 'c' to continue.\n\n");
+		printf("Debug Mode.\nPress 'c' to continue or to proceed to next step.\n\n");
 	}
 	
 	while (fgets(line, sizeof(line), fd) != NULL) {
@@ -140,7 +140,7 @@ int main(int argc, char **argv) {
 	}
 
 	if(glob->debug_mode){
-		printf(ANSI_COLOR_GREEN "\n\nResult\n");
+		printf("\n\nResult\n" ANSI_COLOR_GREEN);
 	}
 	/* Program ends here. */
 	display(glob, args_);
