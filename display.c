@@ -66,11 +66,8 @@ void display(glob_t *glob, args_t p_args) {
 		while (*ptr) {
 			char **ref = ptr;
 			printf("[%p]:[%s]\n", (void*)&*ref, *ptr++);
-			free(*ref);
-
-			if (!*ptr) {
+			if (!*ptr)
 				printf("\n");
-			}
 		}
 	}
 

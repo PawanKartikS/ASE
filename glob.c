@@ -91,6 +91,12 @@ void destroy_glob(glob_t *glob) {
 
 	free(glob->mem);
 	free(glob->flags);
+
+	char **ptr = &glob->stack->arr[0];
+	while (*ptr) {
+		free(*ptr++);
+	}
+
 	free(glob->stack);
 	free(glob->registers);
 	free(glob);
