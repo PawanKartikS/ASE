@@ -22,7 +22,7 @@ void bind_calls(table_t *table) {
     assert(register_entry(table, "JMP", jump, 1));
     assert(register_entry(table, "LAHF", lahf, 0));
     assert(register_entry(table, "MOV", move, 2));
-    assert(register_entry(table, "MUL", math_op, 1));
+    /* assert(register_entry(table, "MUL", math_op, 1)); */
     assert(register_entry(table, "NEG", neg, 1));
     assert(register_entry(table, "NOP", nop, 0));
     assert(register_entry(table, "ORG", org, 1));
