@@ -4,6 +4,9 @@ ASE is designed to act as a minimal replacement for existing aging emulators.
 ASE is currently in active development (as a hobby project, you are welcome to contribute!) and as of now supports approx 30-40 common
 instructions - Move, jump, set/clear flag values etc.
 
+### Note:
+Some of the core parts of ASE are being rewritten to reduce boilerplate code and improve readability. The modules that handle math operations are amongst those parts. As a result, operations such as `MUL` or `DIV` give out incorrect answers. Therefore, `MUL` and `DIV` are being disabled until the work is complete.
+
 ### Building ASE:
 
 ```bash
