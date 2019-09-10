@@ -73,16 +73,52 @@ void display(glob_t *glob, args_t p_args) {
 void parse_args(glob_t *glob, int argc, char **argv, args_t *args) {
     for (int i = 2; i < argc; i++) {
         /* clang-format off */
-        if (!strcmp(argv[i], "-a")) args->f = args->m =
-                                    args->r = args->s = 1;
-        if (!strcmp(argv[i], "-d")) glob->debug = 1;
-        if (!strcmp(argv[i], "-f")) args->f     = 1;
-        if (!strcmp(argv[i], "-h")) args->h     = 1;
-        if (!strcmp(argv[i], "-l")) args->l     = 1;
-        if (!strcmp(argv[i], "-m")) args->m     = 1;
-        if (!strcmp(argv[i], "-r")) args->r     = 1;
-        if (!strcmp(argv[i], "-s")) args->s     = 1;
-        if (!strcmp(argv[i], "-v")) args->v     = 1;
+        if (!strcmp(argv[i], "-a")) {
+            args->f = args->m = args->r = args->s = 1;
+            continue;
+        }
+        
+        if (!strcmp(argv[i], "-d")) {
+            glob->debug = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-f")) {
+            args->f = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-h")) {
+            args->h = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-l")) {
+            args->l = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-m")) {
+            args->m = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-r")) {
+            args->r = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-s")) {
+            args->s = 1;
+            continue;
+        }
+
+        if (!strcmp(argv[i], "-v")) {
+            args->v = 1;
+            continue;
+        }
+
+        printf("Skipping invalid arg: %s.\n\n", argv[i]);
         /* clang-format on */
     }
 }
