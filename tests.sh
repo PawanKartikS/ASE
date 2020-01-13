@@ -5,10 +5,10 @@ echo "Running unit tests"
 
 fail=0
 
-for file in tests/*.c;
+for file in Tests/*.c;
 do
 	echo "Running tests: $file"
-	gcc -std=c11 -Wall "$file" flags.c glob.c mathop.c mem.c parse.c stack.c
+	gcc -std=c11 -Wall "$file" Flags/flags.c Glob/glob.c Math/mathop.c Memory/mem.c Parser/parse.c Stack/stack.c
 	./a.out
 
 	if [ $? -eq 1 ]

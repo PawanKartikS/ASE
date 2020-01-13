@@ -1,6 +1,6 @@
 #pragma once
 
-#include "glob.h"
+#include "../Glob/glob.h"
 
 /* clang-format off */
 int cmc          (glob_t *glob, char *buf,

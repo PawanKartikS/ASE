@@ -1,5 +1,5 @@
 #include "glob.h"
-#include "parse.h"
+#include "../Parser/parse.h"
 #include <assert.h>
 #include <ctype.h>
 #include <malloc.h>

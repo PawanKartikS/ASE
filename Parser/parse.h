@@ -3,7 +3,7 @@
 #define BIN_FS 'B'
 #define HEX_FS 'H'
 
-#include "glob.h"
+#include "../Glob/glob.h"
 #include <stdio.h>
 
 /* clang-format off */

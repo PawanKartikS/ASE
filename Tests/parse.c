@@ -5,15 +5,14 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../glob.h"
-#include "../mem.h"
-#include "../parse.h"
+#include "../Glob/glob.h"
+#include "../Memory/mem.h"
+#include "../Parser/parse.h"
 
 int main(void) {
-    FILE *fd = fopen("tests/ph", "r");
+    FILE *fd = fopen("Tests/ph", "r");
     if (!fd) {
-        fprintf(stderr,
-                "TEST: PARSE - Could not open PH.\n");
+        fprintf(stderr, "TEST: PARSE - Could not open PH.\n");
         return 1;
     }
 

@@ -6,10 +6,10 @@
 
 #pragma once
 
-#include "flags.h"
-#include "mathop.h"
-#include "mem.h"
-#include "stack.h"
-#include "tengine.h"
+#include "../Flags/flags.h"
+#include "../Math/mathop.h"
+#include "../Memory/mem.h"
+#include "../Stack/stack.h"
+#include "../TEngine/tengine.h"
 
 void bind_calls(table_t *table);

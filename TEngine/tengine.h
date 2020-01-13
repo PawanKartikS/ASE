@@ -5,8 +5,8 @@
 #define BUFSIZE 128
 /* clang-format on */
 
-#include "glob.h"
-#include "parse.h"
+#include "../Glob/glob.h"
+#include "../Parser/parse.h"
 
 typedef struct entry {
     char *f_id;

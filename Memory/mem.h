@@ -1,7 +1,7 @@
 #pragma once
 
-#include "glob.h"
-#include "parse.h"
+#include "../Glob/glob.h"
+#include "../Parser/parse.h"
 
 /* clang-format off */
 int hlt  (glob_t *glob, char *buf, unsigned long size);

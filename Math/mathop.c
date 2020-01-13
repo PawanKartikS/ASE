@@ -1,13 +1,3 @@
-/**
- * @file: a_math.c
- * @desc: Defines the following 8086 instructions:
- *        a) ADD
- *        b) SUB
- *        c) MUL
- *        d) DIV
- *        e) CMP
- */
-
 #include <assert.h>
 #include <ctype.h>
 #include <stdint.h>
@@ -16,13 +6,6 @@
 
 #include "mathop.h"
 
-/**
- * @desc  : Implements the ADD instruction.
- * @param : glob -
- *          buf  - unused
- *          size - unused
- * @return: int  - 0 if fail, 1 if success.
- */
 int math_op(glob_t *glob, char *buf, unsigned long size) {
     if (!glob) {
         fprintf(stderr, "math_op(): glob - null\n");
@@ -34,8 +17,8 @@ int math_op(glob_t *glob, char *buf, unsigned long size) {
     char *ptr = regptr(glob, REG_AX);
 
     char *inst = glob->tokens[0];
-    char *dest = glob->tokens[1];
-    char *src_ = glob->tokens[2];
+    char *dptr = glob->tokens[1];
+    char *sptr = glob->tokens[2];
     char dval[BUF_SZ], sval[BUF_SZ], res[BUF_SZ];
 
     if (strcmp(inst, DIV) == 0 || strcmp(inst, MUL) == 0) {
@@ -44,12 +27,12 @@ int math_op(glob_t *glob, char *buf, unsigned long size) {
          * The default and the destination operand is AX
          * (accumulator).
          */
-        dest = REG_AX;
-        src_ = glob->tokens[1];
+        dptr = REG_AX;
+        sptr = glob->tokens[1];
     }
 
-    int ret1 = opval(glob, dest, dval, sizeof(dval));
-    int ret2 = opval(glob, src_, sval, sizeof(sval));
+    int ret1 = opval(glob, dptr, dval, sizeof(dval));
+    int ret2 = opval(glob, sptr, sval, sizeof(sval));
 
     if (ret1 ^ ret2) {
         return 0;
@@ -103,10 +86,10 @@ int math_op(glob_t *glob, char *buf, unsigned long size) {
      * This part is skipped if the default destination has
      * been set to AX (accumulator).
      */
-    if (operand_addr(dest)) {
+    if (operand_addr(dptr)) {
         char addr[BUF_SZ];
         memset(addr, 0, sizeof(addr));
-        memcpy(addr, &dest[1], strlen(dest) - 2);
+        memcpy(addr, &dptr[1], strlen(dptr) - 2);
 
         if (!valid_addr(addr)) {
             fprintf(stderr, "move(): invalid address [%s].\n", addr);
@@ -115,8 +98,8 @@ int math_op(glob_t *glob, char *buf, unsigned long size) {
 
         int offset = (int)strtol(addr, NULL, 0);
         ptr = register_addr(glob, 0, offset)->val;
-    } else if (operand_reg(dest)) {
-        ptr = regptr(glob, dest);
+    } else if (operand_reg(dptr)) {
+        ptr = regptr(glob, dptr);
     }
 
 /**
@@ -125,6 +108,5 @@ int math_op(glob_t *glob, char *buf, unsigned long size) {
  */
 set:
     assert(ptr);
-
     return ret & opval(glob, res, ptr, BUF_SZ);
 }

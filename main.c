@@ -11,13 +11,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "bind.h"
-#include "display.h"
-#include "glob.h"
-#include "mem.h"
-#include "parse.h"
-#include "stack.h"
-#include "tengine.h"
+#include "Bind/bind.h"
+#include "Display/display.h"
+#include "Glob/glob.h"
+#include "Memory/mem.h"
+#include "Parser/parse.h"
+#include "Stack/stack.h"
+#include "TEngine/tengine.h"
 
 int main(int argc, char **argv) {
     if (argc < 2) {

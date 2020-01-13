@@ -2,8 +2,8 @@
 
 #define BUILD 1909
 
-#include "glob.h"
-#include "parse.h"
+#include "../Glob/glob.h"
+#include "../Parser/parse.h"
 
 typedef struct args {
     int a, f, h, l, m, r, s, v;

@@ -1,3 +1,4 @@
 #!/bin/bash
 
-make && make clean && make utests
+cmake . && make
+sh tests.sh

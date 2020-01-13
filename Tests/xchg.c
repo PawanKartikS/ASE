@@ -4,15 +4,14 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../glob.h"
-#include "../mem.h"
-#include "../parse.h"
+#include "../Glob/glob.h"
+#include "../Memory/mem.h"
+#include "../Parser/parse.h"
 
 int main(void) {
-    FILE *fd = fopen("tests/ph", "r");
+    FILE *fd = fopen("Tests/ph", "r");
     if (!fd) {
-        fprintf(stderr,
-                "TEST: XCHG - Could not open PH.\n");
+        fprintf(stderr, "TEST: XCHG - Could not open PH.\n");
         return 1;
     }
 
@@ -44,20 +43,17 @@ int main(void) {
     xchg(glob, NULL, BUF_SZ);
 
     if ((strcmp(glob->mem->head->val, "b") != 0)) {
-        fprintf(stderr,
-                "Test XCHG: [1128] value not modified.\n");
+        fprintf(stderr, "Test XCHG: [1128] value not modified.\n");
         return 1;
     }
 
     if ((strcmp(glob->registers->ax, "a") != 0)) {
-        fprintf(stderr,
-                "Test XCHG: [AX] value not modified.\n");
+        fprintf(stderr, "Test XCHG: [AX] value not modified.\n");
         return 1;
     }
 
     if ((strcmp(glob->registers->bx, "c") != 0)) {
-        fprintf(stderr,
-                "Test XCHG: [BX] value not modified.\n");
+        fprintf(stderr, "Test XCHG: [BX] value not modified.\n");
         return 1;
     }
 
