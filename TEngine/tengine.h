@@ -9,15 +9,15 @@
 #include "../Parser/parse.h"
 
 typedef struct entry {
-    char *f_id;
-    int opcount;
-    int (*f_ptr)(glob_t *glob, char *buf, unsigned long size);
-    struct entry *next;
+	char *f_id;
+	int opcount;
+	int (*f_ptr)(glob_t *glob, char *buf, unsigned long size);
+	struct entry *next;
 } entry_t;
 
 typedef struct table {
-    entry_t *head;
-    unsigned int entries;
+	entry_t *head;
+	unsigned int entries;
 } table_t;
 
 /* clang-format off */

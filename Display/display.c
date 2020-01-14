@@ -4,75 +4,78 @@
 #include <stdlib.h>
 #include <string.h>
 
-void display(glob_t *glob, args_t p_args) {
-    if (!glob) {
-        return;
-    }
+void display(glob_t *glob, args_t p_args)
+{
+	if (!glob) {
+		return;
+	}
 
-    if (p_args.f && glob->flags) {
-        printf("Flags:\n");
-        printf("[CF]:[%d]\n", glob->flags->cf);
-        printf("[DF]:[%d]\n", glob->flags->df);
-        printf("[IF]:[%d]\n", glob->flags->iif);
-        printf("[OF]:[%d]\n", glob->flags->of);
-        printf("[PF]:[%d]\n", glob->flags->pf);
-        printf("[SF]:[%d]\n", glob->flags->sf);
-        printf("[ZF]:[%d]\n\n", glob->flags->zf);
-    }
+	if (p_args.f && glob->flags) {
+		printf("Flags:\n");
+		printf("[CF]:[%d]\n", glob->flags->cf);
+		printf("[DF]:[%d]\n", glob->flags->df);
+		printf("[IF]:[%d]\n", glob->flags->iif);
+		printf("[OF]:[%d]\n", glob->flags->of);
+		printf("[PF]:[%d]\n", glob->flags->pf);
+		printf("[SF]:[%d]\n", glob->flags->sf);
+		printf("[ZF]:[%d]\n\n", glob->flags->zf);
+	}
 
-    if (p_args.h) {
-        show_flags();
-    }
+	if (p_args.h) {
+		show_flags();
+	}
 
-    if (p_args.l) {
-        if (glob->idx) {
-            printf("User specified labels:\n");
-        }
+	if (p_args.l) {
+		if (glob->idx) {
+			printf("User specified labels:\n");
+		}
 
-        for (int i = 0; i < glob->idx; i++) {
-            printf("[%s]:[%d]\n", glob->label_locs[i].label,
-                   glob->label_locs[i].line);
-        }
-    }
+		for (int i = 0; i < glob->idx; i++) {
+			printf("[%s]:[%d]\n", glob->label_locs[i].label,
+			       glob->label_locs[i].line);
+		}
+	}
 
-    if (p_args.m && glob->mem) {
-        mem_nodes_t *node = glob->mem->head;
+	if (p_args.m && glob->mem) {
+		mem_nodes_t *node = glob->mem->head;
 
-        if (node && glob) {
-            printf("Memory:\n");
+		if (node && glob) {
+			printf("Memory:\n");
 
-            while (node && glob) {
-                printf("[%d:%d] - [%s]\n", node->seg, node->offset, node->val);
-                node = node->next;
-            }
-        }
-    }
+			while (node && glob) {
+				printf("[%d:%d] - [%s]\n", node->seg,
+				       node->offset, node->val);
+				node = node->next;
+			}
+		}
+	}
 
-    if (p_args.r && glob->registers) {
-        printf("Register:\n");
-        printf("[AX]:[%s]\n", glob->registers->ax);
-        printf("[BX]:[%s]\n", glob->registers->bx);
-        printf("[CX]:[%s]\n", glob->registers->cx);
-        printf("[DX]:[%s]\n\n", glob->registers->dx);
-    }
+	if (p_args.r && glob->registers) {
+		printf("Register:\n");
+		printf("[AX]:[%s]\n", glob->registers->ax);
+		printf("[BX]:[%s]\n", glob->registers->bx);
+		printf("[CX]:[%s]\n", glob->registers->cx);
+		printf("[DX]:[%s]\n\n", glob->registers->dx);
+	}
 
-    if (p_args.s && glob->stack) {
-        int top = glob->stack->top;
-        while (top >= 0) {
-            printf("[%p]:[%s]\n", (void *)&glob->stack->arr[top],
-                   glob->stack->arr[top]);
-            top--;
-        }
-    }
+	if (p_args.s && glob->stack) {
+		int top = glob->stack->top;
+		while (top >= 0) {
+			printf("[%p]:[%s]\n", (void *)&glob->stack->arr[top],
+			       glob->stack->arr[top]);
+			top--;
+		}
+	}
 
-    if (p_args.v) {
-        printf("Build : %d\nAuthor: Pawan Kartik\n", BUILD);
-    }
+	if (p_args.v) {
+		printf("Build : %d\nAuthor: Pawan Kartik\n", BUILD);
+	}
 }
 
-void parse_args(glob_t *glob, int argc, char **argv, args_t *args) {
-    for (int i = 2; i < argc; i++) {
-        /* clang-format off */
+void parse_args(glob_t *glob, int argc, char **argv, args_t *args)
+{
+	for (int i = 2; i < argc; i++) {
+		/* clang-format off */
         if (!strcmp(argv[i], "-a")) {
             args->f = args->m = args->r = args->s = 1;
             continue;
@@ -119,12 +122,13 @@ void parse_args(glob_t *glob, int argc, char **argv, args_t *args) {
         }
 
         printf("Skipping invalid arg: %s.\n\n", argv[i]);
-        /* clang-format on */
-    }
+		/* clang-format on */
+	}
 }
 
-void show_flags() {
-    fprintf(stderr, "Supported flags: \n\
+void show_flags()
+{
+	fprintf(stderr, "Supported flags: \n\
         -a : Enable all (below) emulator specified flags \n\
         -d : Enable debug mode \n\
         -f : Show flag contents \n\
